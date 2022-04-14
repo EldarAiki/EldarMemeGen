@@ -1,0 +1,280 @@
+
+body {
+    margin:0;
+}
+
+.editor-main {
+    display: none;
+    margin-top: 50px;
+    gap: 3%;
+}
+
+.canvas-container {
+
+    background-color: aquamarine;
+    display: flex;
+    width: fit-content;
+    
+}
+
+.tag-list {
+    list-style: none;
+    display: flex;
+    gap:10px;
+    font-size: 16px;
+    align-self: center;
+    color: azure;
+}
+
+.entry-gallery {
+
+    display: flex;
+    flex-direction: column;
+}
+
+.img-box {
+    display: flex;
+    height: 300px;
+    width: 300px;
+}
+
+.gallery-ui {
+    display: flex;
+    background-color: rgb(96, 34, 154);
+    align-content: center;
+    height: 7vh;
+    gap: 40px;
+}
+
+.search-bar{
+    margin-top: 15px;
+    margin-left: 40px;
+    border-radius: 10%;
+    
+}
+
+.pic-gallery {
+    margin: 15px;
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+}
+
+.header {
+
+    height: 20vh;
+    display: flex;
+    background-color: blueviolet;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.footer {
+    margin-top: 10px;
+    height: 10vh;
+    background-color: blueviolet;
+    color:whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo {
+    margin-bottom: 30px;
+    margin-left: 30px;
+    align-self: flex-end;
+    display: flex;
+    height: 80px;
+    width: 300px;
+    content: inline;
+}
+
+.meme-gallery {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30px;
+    color:azure;
+    background: blueviolet;
+    border-color: rgb(108, 34, 177);
+
+}
+
+.button-ui {
+    margin-top: 20px;
+    color:azure;
+    height: 30px;
+    width: 120px;
+    background-color: rgb(95, 41, 145);
+    box-shadow: 1px 3px #210d2d;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+       
+}
+
+.button-ui >* {
+    text-decoration: none;
+    color: azure;
+    
+}
+
+.button-ui:hover {
+    cursor: pointer;
+}
+
+.ui-buttons {
+
+    width:40%;
+    height: 26vh;
+    border-radius: 20px;
+    padding: 5px;
+    background-color: rgb(168, 122, 210);
+    
+    margin-right: 10px;
+    display: grid;
+    
+    grid-gap: 10px;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr ;
+    grid-template-rows:  1fr 1fr 1fr 1fr  ;
+    grid-template-areas: 
+    " addt addt addt addt set tog "
+   ". up down inc dec dlt"
+   ".  font font fil stro ."
+   " dnld save . . . back";
+   
+}
+
+.ui-buttons >* {
+    margin-top: 10px;
+}
+
+
+.add-Txt {
+    margin-left: 5px;
+    grid-area: addt;
+}
+
+.set-btn {
+    grid-area: set;
+}
+
+.toggle-btn {
+    grid-area: tog;
+}
+
+.up-btn {
+    grid-area: up;
+}
+
+.down-btn {
+    grid-area: down;
+}
+
+.inc-btn {
+    grid-area: inc;
+}
+
+.dec-btn {
+    grid-area: dec;
+}
+
+.font-select {
+    grid-area: font;
+}
+
+.dlt-btn {
+    grid-area: dlt;
+}
+
+.color-fill {
+    grid-area: fil;
+}
+
+.color-stroke {
+    grid-area: stro;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: back;
+}
+
+.save-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: save;
+}
+
+.download-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-area: dnld;
+}
+
+.meme-gallery-present {
+
+    display: none;
+    margin: 15px;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+
+}
+
+.back-gallery {
+    padding: 20px;
+    margin: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    margin-right: 30px;
+    color:azure;
+    background: rgb(95, 41, 145)
+    
+}
+
+.meme-gallery-present {
+
+    display: flex;
+    flex-direction: column;
+
+}
+
+.meme-item {
+
+    height: 300px;
+    width: 400px;
+}
+
+
+@media (max-width: 1100px) {
+
+
+    .editor-main {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+}
+
+
+@media (max-width: 660px) {
+
+    .pic-gallery {
+       
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        justify-items: center;
+        align-items: center;
+    } 
+}
+
