@@ -50,7 +50,7 @@
 
 
         <div class="canvas-container">
-            <canvas id="canvas" height="500" width="800" onclick="unselect()" ></canvas>
+            <canvas class="canvas" id="canvas" height="500" width="800" ></canvas>
         </div>
         <div class="ui-buttons">
             <input class="add-Txt"  id ='addTxt'   type="text" placeholder="Enter Text" oninput="onInputChange()">
@@ -82,6 +82,14 @@
     </section>
 
     <section class="meme-gallery-present">
+
+        <div class="meme-card">
+            <img src="" alt="">
+            <div class="meme-ui">
+                <button onclick="editMeme(img)">edit</button>
+                <button onclick="deleteMeme(img)">Delete</button>
+            </div>
+        </div>
 
     </section>
 

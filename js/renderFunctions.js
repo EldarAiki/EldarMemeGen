@@ -4,20 +4,21 @@ function renderTxt(txt, x = parseInt(gElCanvas.width / 2), y = 50) {
     var locX
     if (!gIsPressed) locX = getTxtStart(txt)
     else locX = x
+    gCtx.beginPath()
     gCtx.font = `${gFontSize}px ${gFont}`
     gCtx.fillStyle = gFillColor
     gCtx.lineWidth = 4;
     gCtx.strokeStyle = gStrokeColor
     gCtx.fillText(txt, locX, y)
     gCtx.strokeText(txt, locX, y)
+    gCtx.closePath()
 
 }
 
 function renderEditedTxt() {
-
+    if (gIsToggled) return
     const elTxt = document.querySelector('#addTxt')
     var txt = elTxt.value
-
     renderTxt(txt, gCurrTextX, gCurrTextY)
     var textWidth = gCtx.measureText(txt).width
     drawSrroundRect(gCurrTextX, gCurrTextY, textWidth)
@@ -34,7 +35,7 @@ function renderTxtArray() {
 function renderCanvas() {
 
     layImage()
-    renderTxtArray()
+    // renderTxtArray()
     
 }
 
@@ -43,10 +44,29 @@ function clearCanvas() {
 }
 
 function deleteTxt() {
-    const elTxt = document.querySelector('#addTxt');
-    elTxt.value = ''
-    renderCanvas()
-    renderEditedTxt()
+
+    if (gSelectedTxtIndex) {
+
+        gTxtArray.splice(gSelectedTxtIndex, 1)
+        layImage()
+        gSelectedTxtIndex = null
+        gIsSelected = false
+        gSelectedID = null
+
+    }else if (gSelectedTxtIndex === 0) {
+
+        gTxtArray.splice(gSelectedTxtIndex, 1)
+        layImage()
+        gSelectedTxtIndex = null
+        gIsSelected = false
+        gSelectedID = null
+        
+    }else {
+        const elTxt = document.querySelector('#addTxt');
+        elTxt.value = ''
+        renderCanvas()
+        renderEditedTxt()
+    }
 }
 
 function drawSrroundRect(x, y, len) {
@@ -60,7 +80,8 @@ function drawSrroundRect(x, y, len) {
     var xEnd = len + 20 + xStart +6
     var yEnd = yStart + gFontSize + 6
 
-    gCtx.strokeRect(x - len / 2 + 6, y - gFontSize + 4, len + 20, gFontSize + 2)
+    // gCtx.strokeRect(x - len / 2 - 6, y - gFontSize - 4, len + 20, gFontSize + 2)
+    gCtx.strokeRect(x - len / 2 - 6, y - gFontSize - 4, xEnd - xStart, yEnd - yStart)
     gCtx.setLineDash([])
     gCtx.closePath()
     return { xS: xStart, xE: xEnd, yS: yStart, yE: yEnd }
@@ -69,6 +90,7 @@ function drawSrroundRect(x, y, len) {
 
 function renderSelection() {
     if (!gIsSelected) return
+    // if (!gIsPressed) return
     if (gTxtArray.length === 0) return
     var txt
     if (gSelectedID) txt = gTxtArray.find((txt) => txt.id === gSelectedID)
