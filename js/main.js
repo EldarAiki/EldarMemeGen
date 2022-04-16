@@ -21,7 +21,10 @@ var gIsSelected = false;
 var gSelectedTxtIndex = null;
 var gSelectedID = null;
 var gID = 101;
-var gIsToggled = false 
+var gIsToggled = false;
+let timeOutID;
+let gRatio
+let imgObj
 const gTouchEvs = ["touchstart", "touchmove", "touchend"];
 const memeKey = "memes";
 
@@ -31,10 +34,12 @@ function init() {
 }
 
 function resizeCanvas() {
+
   const elContainer = document.querySelector(".canvas-container");
   gElCanvas.width = elContainer.offsetWidth;
   gElCanvas.height = elContainer.offsetHeight;
-  renderCanvas();
+  reSizeImage()
+
 }
 
 function setCanvas(img) {
@@ -61,24 +66,38 @@ function setCanvas(img) {
 }
 
 function layImage() {
-  var img = new Image();
-  img.src = gSelcetedImg;
-  img.onload = DrawImgSize;
+  imgObj = new Image();
+  imgObj.src = gSelcetedImg;
+  imgObj.onload = DrawImgSize;
   function DrawImgSize() {
     const imgWidth = this.naturalWidth
     const imgHight = this.naturalHeight
-    const ratio = imgHight/imgWidth
+    gRatio = imgHight/imgWidth
 
     const elContainer = document.querySelector('.canvas-container')
 
     gElCanvas.width = elContainer.offsetWidth
-    gElCanvas.height = elContainer.offsetWidth * ratio
+    gElCanvas.height = elContainer.offsetWidth * gRatio
 
-    gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height);
+    gCtx.drawImage(imgObj, 0, 0, gElCanvas.width, gElCanvas.height);
     renderEditedTxt();
     renderTxtArray();
     renderSelection();
   }
+}
+
+function reSizeImage() {
+
+    const elContainer = document.querySelector('.canvas-container')
+
+    gElCanvas.width = elContainer.offsetWidth
+    gElCanvas.height = elContainer.offsetWidth * gRatio
+
+    gCtx.drawImage(imgObj, 0, 0, gElCanvas.width, gElCanvas.height);
+    renderEditedTxt();
+    renderTxtArray();
+    renderSelection();
+  
 }
 
 function onInputChange(ev) {
