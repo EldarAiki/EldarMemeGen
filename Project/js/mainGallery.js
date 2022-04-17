@@ -73,6 +73,8 @@ function incTag(tag) {
   gTags[ind].inc += 2;
   const elTag = document.querySelector(`.${tag}`);
   elTag.style.fontSize = gTags[ind].inc + "px";
+  document.querySelector("#search").value = gTags[ind].tag
+  filterTags(gTags[ind].tag)
 }
 
 function renderTags() {
